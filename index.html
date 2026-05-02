@@ -1,0 +1,1275 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="page-title">Movies World: Watch and Learn</title>
+  <meta name="description" id="page-desc" content="تعلم الإنجليزية بينما تشاهد أفضل الأفلام الكرتون" />
+  <meta name="keywords" content="تعلم الإنجليزية مع الأفلام, تعلم اللغة الإنجليزية كرتون, مفردات فيلم Hoppers, English with Movies, تعلم الإنجليزية للمبتدئين, Pixar Hoppers English">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&family=Cairo:wght@300;400;600;700;900&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ══════════════════════════════════════════════════
+       CSS VARIABLES — driven by movie-config.js
+    ══════════════════════════════════════════════════ */
+    :root {
+      --gold:        #F5C518;
+      --gold-light:  #FFE066;
+      --gold-dark:   #B8960C;
+      --bg-deep:     #050508;
+      --bg-card:     #0D0D14;
+      --bg-card2:    #13131E;
+      --bg-glass:    rgba(13,13,20,0.85);
+      --text-main:   #F2F0EC;
+      --text-muted:  #8A8799;
+      --text-dim:    #5A5870;
+      --border:      rgba(245,197,24,0.12);
+      --border-soft: rgba(255,255,255,0.06);
+      --radius:      18px;
+      --radius-sm:   10px;
+      --radius-xs:   6px;
+
+      /* ← يُحدَّث بواسطة JS من movie-config.js */
+      --accent:      #FF7B1C;
+      --accent-dark: #C45500;
+      --accent-glow: rgba(255,123,28,0.20);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Cairo', 'Tajawal', sans-serif;
+      background: var(--bg-deep);
+      color: var(--text-main);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ─── NOISE + STARS ─────────────────────────────── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; pointer-events: none; z-index: 0;
+      background-image:
+        radial-gradient(1px 1px at 12% 18%, rgba(255,255,255,0.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 40% 8%,  rgba(255,255,255,0.3) 0%, transparent 100%),
+        radial-gradient(2px 2px at 72% 30%, rgba(255,255,255,0.4) 0%, transparent 100%),
+        radial-gradient(1px 1px at 22% 55%, rgba(255,255,255,0.3) 0%, transparent 100%),
+        radial-gradient(1px 1px at 85% 70%, rgba(255,255,255,0.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 52% 82%, rgba(255,255,255,0.2) 0%, transparent 100%),
+        radial-gradient(2px 2px at 6%  92%, rgba(255,255,255,0.3) 0%, transparent 100%),
+        radial-gradient(1px 1px at 93% 12%, rgba(255,255,255,0.2) 0%, transparent 100%),
+        radial-gradient(1px 1px at 35% 42%, rgba(255,255,255,0.25) 0%, transparent 100%),
+        radial-gradient(1px 1px at 64% 60%, rgba(255,255,255,0.2) 0%, transparent 100%);
+    }
+
+    /* ─── SCROLL PROGRESS ───────────────────────────── */
+    #scrollBar {
+      position: fixed; top: 0; right: 0; left: 0;
+      height: 3px; background: var(--accent);
+      transform: scaleX(0); transform-origin: right;
+      transition: transform 0.1s linear; z-index: 9999;
+      box-shadow: 0 0 12px var(--accent);
+    }
+
+    /* ══════════════════════════════════════════════════
+       HEADER
+    ══════════════════════════════════════════════════ */
+    header {
+      position: sticky; top: 0; z-index: 200;
+      background: rgba(5,5,8,0.88);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      transition: background 0.3s, box-shadow 0.3s;
+    }
+    header.scrolled {
+      background: rgba(5,5,8,0.97);
+      box-shadow: 0 4px 30px rgba(0,0,0,0.5);
+    }
+
+    .header-inner {
+      max-width: 1160px; margin: 0 auto;
+      padding: 0 clamp(1rem, 4vw, 2rem);
+      display: flex; align-items: center;
+      justify-content: space-between;
+      height: 66px; gap: 1rem;
+    }
+
+    .site-logo {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none; flex-shrink: 0;
+    }
+
+    .logo-icon {
+      width: 40px; height: 40px;
+      background: linear-gradient(135deg, var(--accent), var(--gold));
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+      box-shadow: 0 0 18px var(--accent-glow);
+      animation: logoPulse 3s ease-in-out infinite;
+    }
+
+    @keyframes logoPulse {
+      0%,100% { box-shadow: 0 0 18px var(--accent-glow); }
+      50%      { box-shadow: 0 0 28px var(--accent-glow), 0 0 8px var(--gold); }
+    }
+
+    .logo-text-wrap { line-height: 1.15; }
+    .logo-name {
+      font-size: 16px; font-weight: 900;
+      color: var(--text-main); letter-spacing: -0.3px;
+    }
+    .logo-name span { color: var(--gold); }
+    .logo-sub {
+      font-size: 10px; font-weight: 400;
+      color: var(--text-muted); letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    /* vocab button in header */
+    .nav-vocab-btn {
+      display: flex; align-items: center; gap: 7px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+      color: #fff; border: none; border-radius: 100px;
+      padding: 9px 20px; font-family: inherit;
+      font-size: 13px; font-weight: 700; cursor: pointer;
+      text-decoration: none; flex-shrink: 0;
+      box-shadow: 0 0 20px var(--accent-glow);
+      transition: transform 0.2s, box-shadow 0.2s;
+      animation: headerBtnGlow 2.5s ease-in-out infinite;
+    }
+    .nav-vocab-btn:hover { transform: scale(1.05); box-shadow: 0 0 30px var(--accent); }
+    @keyframes headerBtnGlow {
+      0%,100% { box-shadow: 0 0 20px var(--accent-glow); }
+      50%      { box-shadow: 0 0 35px var(--accent-glow); }
+    }
+    .nav-vocab-btn svg { width:16px; height:16px; flex-shrink:0; }
+
+    /* ══════════════════════════════════════════════════
+       TOP AD
+    ══════════════════════════════════════════════════ */
+    .ad-top-wrap {
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--border);
+      padding: 12px clamp(1rem,4vw,2rem);
+      display: flex; justify-content: center; align-items: center;
+      gap: 10px; position: relative; z-index: 1;
+    }
+    .ad-label {
+      font-size: 9px; color: var(--text-dim);
+      letter-spacing: 1.5px; text-transform: uppercase; opacity: 0.7;
+    }
+    .ad-leaderboard {
+      width: 728px; max-width: 100%; height: 90px;
+      background: rgba(255,255,255,0.02);
+      border: 1px dashed rgba(245,197,24,0.15);
+      border-radius: var(--radius-sm);
+      overflow: hidden; display: flex;
+      align-items: center; justify-content: center;
+    }
+    .ad-mobile-banner { display: none; width: 320px; max-width:100%; height: 50px; background: rgba(255,255,255,0.02); border: 1px dashed rgba(245,197,24,0.15); border-radius: var(--radius-sm); overflow: hidden; }
+    @media(max-width:767px) { .ad-leaderboard{display:none;} .ad-mobile-banner{display:flex;align-items:center;justify-content:center;} }
+
+    /* ══════════════════════════════════════════════════
+       HERO
+    ══════════════════════════════════════════════════ */
+    .hero {
+      position: relative; z-index: 1; text-align: center;
+      padding: clamp(3rem,8vw,6rem) clamp(1rem,4vw,2rem) clamp(2rem,5vw,4rem);
+      overflow: hidden;
+    }
+    .hero::after {
+      content: ''; position: absolute; top: 40%; left: 50%;
+      transform: translate(-50%,-50%);
+      width: clamp(300px,80vw,700px); height: clamp(200px,50vw,450px);
+      background: radial-gradient(ellipse, var(--accent-glow) 0%, transparent 70%);
+      pointer-events: none; animation: heroGlow 4s ease-in-out infinite;
+    }
+    @keyframes heroGlow { 0%,100%{opacity:0.6} 50%{opacity:1} }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(245,197,24,0.08);
+      border: 1px solid rgba(245,197,24,0.25);
+      border-radius: 100px; padding: 6px 18px;
+      font-size: 12px; font-weight: 700; color: var(--gold);
+      margin-bottom: 1.5rem; letter-spacing: 0.5px;
+      animation: fadeSlideDown 0.7s ease both;
+    }
+    .hero-title {
+      font-family: 'Cairo', sans-serif;
+      font-size: clamp(2rem,6vw,4rem);
+      font-weight: 900; line-height: 1.2;
+      margin-bottom: 1rem;
+      animation: fadeSlideDown 0.7s 0.1s ease both;
+    }
+    .hero-title em {
+      font-style: normal; color: var(--accent);
+      display: inline-block; position: relative;
+    }
+    .hero-title em::after {
+      content: ''; position: absolute; inset-inline-start: 0; bottom: -4px;
+      width: 100%; height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--gold));
+      border-radius: 2px;
+    }
+    .hero-sub {
+      max-width: 620px; margin: 0 auto 1.5rem;
+      font-size: clamp(1rem,2.5vw,1.15rem);
+      color: var(--text-muted); line-height: 1.8;
+      animation: fadeSlideDown 0.7s 0.2s ease both;
+    }
+    .hero-stars { font-size: 1.4rem; animation: fadeSlideDown 0.7s 0.3s ease both; }
+
+    @keyframes fadeSlideDown {
+      from { opacity:0; transform: translateY(-16px); }
+      to   { opacity:1; transform: translateY(0); }
+    }
+
+    /* ══════════════════════════════════════════════════
+       MAIN LAYOUT
+    ══════════════════════════════════════════════════ */
+    .main-wrap {
+      max-width: 1160px; margin: 0 auto;
+      padding: 0 clamp(1rem,4vw,2rem) clamp(2rem,5vw,4rem);
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 2.5rem; position: relative; z-index: 1;
+    }
+    @media(max-width: 900px) { .main-wrap { grid-template-columns: 1fr; } }
+
+    /* ══════════════════════════════════════════════════
+       FILM CARD (Poster + Story)
+    ══════════════════════════════════════════════════ */
+    .film-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin-bottom: 2rem;
+      animation: cardReveal 0.6s 0.3s ease both;
+    }
+    @keyframes cardReveal {
+      from { opacity:0; transform: translateY(24px); }
+      to   { opacity:1; transform: translateY(0); }
+    }
+
+    .film-layout {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 0;
+    }
+    @media(max-width: 700px) { .film-layout { grid-template-columns: 1fr; } }
+
+    /* Poster */
+    .film-poster-wrap {
+      position: relative; overflow: hidden;
+      min-height: 360px;
+    }
+    .film-poster-wrap img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+    }
+    .film-poster-fallback {
+      width: 100%; height: 100%; min-height: 360px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      font-size: 4rem; gap: 0.5rem;
+      color: rgba(255,255,255,0.7);
+    }
+    .film-poster-fallback span {
+      font-size: 1rem; font-weight: 600; text-align: center; padding: 0 1rem;
+    }
+    .poster-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to right, transparent 60%, var(--bg-card) 100%);
+    }
+    @media(max-width: 700px) { .poster-overlay { background: linear-gradient(to top, var(--bg-card) 0%, transparent 50%); } }
+
+    .film-year-badge {
+      position: absolute; top: 14px; inset-inline-start: 14px;
+      background: rgba(0,0,0,0.75);
+      border: 1px solid var(--border-soft);
+      border-radius: 100px; padding: 4px 12px;
+      font-size: 11px; color: var(--text-muted); font-weight: 600;
+      backdrop-filter: blur(6px);
+    }
+    .film-highlight-badge {
+      position: absolute; bottom: 14px; inset-inline-start: 14px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+      border-radius: 100px; padding: 5px 13px;
+      font-size: 11px; color: #fff; font-weight: 700;
+    }
+
+    /* Film Body */
+    .film-body {
+      padding: clamp(1.2rem,3vw,2rem);
+      display: flex; flex-direction: column; gap: 1rem;
+    }
+
+    .film-genres {
+      display: flex; flex-wrap: wrap; gap: 6px;
+    }
+    .genre-tag {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border-soft);
+      border-radius: 100px; padding: 4px 12px;
+      font-size: 11px; color: var(--text-muted); font-weight: 600;
+    }
+
+    .film-title {
+      font-size: clamp(1.5rem,3.5vw,2.2rem);
+      font-weight: 900; line-height: 1.25;
+    }
+    .film-title small {
+      display: block; font-size: 0.55em;
+      color: var(--text-muted); font-weight: 400;
+      margin-top: 3px;
+    }
+
+    .film-imdb {
+      display: flex; align-items: center; gap: 8px;
+    }
+    .imdb-badge {
+      background: var(--gold); color: #000;
+      font-size: 10px; font-weight: 900;
+      padding: 3px 8px; border-radius: 4px; letter-spacing: 0.5px;
+    }
+    .imdb-score { font-size: 1.5rem; font-weight: 900; color: var(--gold); }
+    .imdb-max  { font-size: 0.85rem; color: var(--text-muted); }
+
+    .film-story-title {
+      font-size: 12px; font-weight: 700; color: var(--accent);
+      letter-spacing: 1.5px; text-transform: uppercase;
+    }
+    .film-story-text {
+      font-size: 0.98rem; color: var(--text-muted);
+      line-height: 1.85;
+    }
+
+    .film-cta-row {
+      display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+      margin-top: 0.5rem;
+    }
+
+    .btn-trailer {
+      display: flex; align-items: center; gap: 7px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid var(--border-soft);
+      color: var(--text-main); border-radius: 100px;
+      padding: 10px 22px; font-family: inherit;
+      font-size: 13px; font-weight: 700; cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .btn-trailer:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.2); }
+    .btn-trailer svg { width:15px; height:15px; }
+
+    .btn-vocab {
+      display: flex; align-items: center; gap: 7px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+      color: #fff; border: none; border-radius: 100px;
+      padding: 10px 22px; font-family: inherit;
+      font-size: 13px; font-weight: 700; cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 4px 20px var(--accent-glow);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-vocab:hover { transform: scale(1.04); box-shadow: 0 6px 28px var(--accent); }
+    .btn-vocab svg { width:15px; height:15px; }
+
+    /* ══════════════════════════════════════════════════
+       INFO BLOCKS (message + why watch)
+    ══════════════════════════════════════════════════ */
+    .info-block {
+      background: var(--bg-card);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius);
+      padding: clamp(1.2rem,3vw,2rem);
+      margin-bottom: 2rem;
+      animation: cardReveal 0.6s 0.4s ease both;
+    }
+
+    .info-block-header {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 1rem;
+    }
+    .info-block-icon {
+      width: 38px; height: 38px; border-radius: 10px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; flex-shrink: 0;
+    }
+    .info-block-title {
+      font-size: 1.1rem; font-weight: 800;
+    }
+    .info-block-subtitle {
+      font-size: 11px; color: var(--text-muted); font-weight: 400;
+    }
+
+    .core-message-text {
+      font-size: 1.05rem; line-height: 1.9;
+      color: var(--text-muted);
+      border-right: 3px solid var(--accent);
+      padding-right: 1rem;
+    }
+
+    .why-list { list-style: none; display: flex; flex-direction: column; gap: 0.9rem; }
+    .why-list li {
+      display: flex; align-items: flex-start; gap: 12px;
+      font-size: 0.95rem; line-height: 1.6; color: var(--text-muted);
+    }
+    .why-icon {
+      font-size: 1.3rem; flex-shrink: 0; margin-top: 1px;
+    }
+
+    /* ══════════════════════════════════════════════════
+       VOCABULARY SECTION
+    ══════════════════════════════════════════════════ */
+    #vocab-section {
+      scroll-margin-top: 90px;
+      position: relative; z-index: 1;
+      max-width: 1160px; margin: 0 auto;
+      padding: 0 clamp(1rem,4vw,2rem) clamp(2rem,5vw,5rem);
+    }
+
+    .vocab-header {
+      text-align: center; margin-bottom: 3rem;
+    }
+    .vocab-eyebrow {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(245,197,24,0.08);
+      border: 1px solid rgba(245,197,24,0.25);
+      border-radius: 100px; padding: 5px 16px;
+      font-size: 11px; font-weight: 700; color: var(--gold);
+      letter-spacing: 1px; text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .vocab-title {
+      font-size: clamp(1.6rem,4vw,2.8rem); font-weight: 900; margin-bottom: 0.75rem;
+    }
+    .vocab-title span { color: var(--accent); }
+    .vocab-desc { color: var(--text-muted); font-size: 1rem; max-width: 500px; margin: 0 auto; line-height: 1.7; }
+
+    /* Tabs */
+    .vocab-tabs {
+      display: flex; gap: 8px; justify-content: center;
+      margin-bottom: 2rem; flex-wrap: wrap;
+    }
+    .vocab-tab {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border-soft);
+      border-radius: 100px; padding: 8px 20px;
+      font-family: inherit; font-size: 13px; font-weight: 700;
+      color: var(--text-muted); cursor: pointer;
+      transition: all 0.2s;
+    }
+    .vocab-tab.active, .vocab-tab:hover {
+      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+      border-color: transparent; color: #fff;
+    }
+
+    /* Table Panel */
+    #panel-table { animation: fadeIn 0.4s ease; }
+    #panel-quiz  { display: none; animation: fadeIn 0.4s ease; }
+    @keyframes fadeIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+
+    /* Vocabulary Table */
+    .vocab-table-wrap {
+      background: var(--bg-card);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius); overflow: hidden;
+    }
+    .vocab-table {
+      width: 100%; border-collapse: collapse;
+    }
+    .vocab-table thead {
+      background: rgba(255,255,255,0.04);
+    }
+    .vocab-table th {
+      padding: 14px 18px; text-align: right;
+      font-size: 11px; font-weight: 700;
+      color: var(--text-muted); letter-spacing: 1px;
+      text-transform: uppercase; border-bottom: 1px solid var(--border-soft);
+    }
+    .vocab-table td {
+      padding: 14px 18px; border-bottom: 1px solid var(--border-soft);
+      vertical-align: middle;
+    }
+    .vocab-table tr:last-child td { border-bottom: none; }
+    .vocab-table tr:hover td { background: rgba(255,255,255,0.025); }
+
+    .vocab-word {
+      font-size: 1.05rem; font-weight: 800;
+      color: var(--accent); letter-spacing: -0.3px;
+    }
+    .vocab-pron {
+      font-size: 0.8rem; color: var(--text-dim);
+      margin-top: 2px; font-style: italic;
+    }
+    .vocab-trans {
+      font-size: 1rem; font-weight: 700; color: var(--text-main);
+    }
+    .vocab-example {
+      font-size: 0.82rem; color: var(--text-dim);
+      line-height: 1.5;
+    }
+    .vocab-example-ar {
+      font-size: 0.8rem; color: var(--text-muted);
+      margin-top: 3px;
+    }
+
+    @media(max-width: 640px) {
+      .vocab-table th:nth-child(3),
+      .vocab-table td:nth-child(3) { display: none; }
+    }
+
+    /* ──── QUIZ PANEL ─────────────────────────────── */
+    .quiz-meta {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;
+    }
+    .quiz-progress-label { font-size: 0.9rem; color: var(--text-muted); }
+    .quiz-progress-label strong { color: var(--text-main); }
+    .quiz-score-label { font-size: 0.9rem; color: var(--text-muted); }
+    .quiz-score-label strong { color: var(--gold); }
+
+    .quiz-progress-bar {
+      height: 4px; background: rgba(255,255,255,0.07);
+      border-radius: 2px; margin-bottom: 2rem; overflow: hidden;
+    }
+    .quiz-progress-fill {
+      height: 100%; background: linear-gradient(90deg, var(--accent), var(--gold));
+      border-radius: 2px; transition: width 0.4s ease;
+    }
+
+    .quiz-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius);
+      padding: clamp(1.5rem,4vw,2.5rem);
+      text-align: center;
+    }
+    .quiz-question-num {
+      font-size: 11px; color: var(--text-dim);
+      letter-spacing: 1.5px; text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+    .quiz-question {
+      font-size: clamp(1.2rem,3vw,1.8rem); font-weight: 900;
+      color: var(--accent); margin-bottom: 0.5rem;
+      letter-spacing: -0.5px;
+    }
+    .quiz-question-pron {
+      font-size: 0.9rem; color: var(--text-dim);
+      font-style: italic; margin-bottom: 1.5rem;
+    }
+    .quiz-question-hint {
+      font-size: 0.88rem; color: var(--text-muted);
+      margin-bottom: 2rem;
+    }
+
+    .quiz-options {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 0.75rem; max-width: 500px; margin: 0 auto;
+    }
+    @media(max-width:480px) { .quiz-options { grid-template-columns: 1fr; } }
+
+    .quiz-opt {
+      background: rgba(255,255,255,0.05);
+      border: 1.5px solid var(--border-soft);
+      border-radius: 12px; padding: 14px 18px;
+      font-family: inherit; font-size: 1rem; font-weight: 700;
+      color: var(--text-main); cursor: pointer;
+      transition: all 0.2s;
+    }
+    .quiz-opt:hover:not(:disabled) {
+      background: rgba(255,255,255,0.1);
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+    .quiz-opt.correct {
+      background: rgba(34,197,94,0.15) !important;
+      border-color: #22C55E !important;
+      color: #86EFAC !important;
+      animation: popIn 0.4s ease;
+    }
+    .quiz-opt.wrong {
+      background: rgba(239,68,68,0.15) !important;
+      border-color: #EF4444 !important;
+      color: #FCA5A5 !important;
+      animation: shake 0.4s ease;
+    }
+    @keyframes popIn  { 0%{transform:scale(1)} 50%{transform:scale(1.06)} 100%{transform:scale(1)} }
+    @keyframes shake  { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-6px)} 75%{transform:translateX(6px)} }
+
+    .quiz-feedback {
+      margin-top: 1.5rem; min-height: 48px;
+      display: flex; align-items: center; justify-content: center;
+      gap: 10px;
+    }
+    .quiz-feedback-icon { font-size: 1.8rem; }
+    .quiz-feedback-text { font-size: 1rem; font-weight: 700; }
+    .quiz-feedback.correct .quiz-feedback-text { color: #86EFAC; }
+    .quiz-feedback.wrong   .quiz-feedback-text { color: #FCA5A5; }
+
+    .quiz-next-btn {
+      margin-top: 1.5rem;
+      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+      border: none; border-radius: 100px;
+      padding: 11px 28px; font-family: inherit;
+      font-size: 14px; font-weight: 700; color: #fff; cursor: pointer;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s, transform 0.2s;
+    }
+    .quiz-next-btn.visible { opacity: 1; pointer-events: all; }
+    .quiz-next-btn:hover { transform: scale(1.04); }
+
+    /* Results */
+    .quiz-results {
+      text-align: center; padding: 3rem 1.5rem;
+    }
+    .results-emoji { font-size: 4rem; margin-bottom: 1rem; }
+    .results-score { font-size: 2.5rem; font-weight: 900; color: var(--gold); }
+    .results-max   { font-size: 1rem; color: var(--text-muted); margin-bottom: 1.5rem; }
+    .results-msg   { font-size: 1.05rem; color: var(--text-muted); margin-bottom: 2rem; line-height: 1.7; }
+    .results-retry {
+      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+      border: none; border-radius: 100px;
+      padding: 12px 32px; font-family: inherit;
+      font-size: 14px; font-weight: 700; color: #fff; cursor: pointer;
+    }
+
+    /* ══════════════════════════════════════════════════
+       SIDEBAR
+    ══════════════════════════════════════════════════ */
+    .sidebar { position: relative; z-index: 1; }
+
+    .sidebar-ad-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius);
+      padding: 1.2rem; margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    .sidebar-ad-box .ad-label { display: block; margin-bottom: 10px; }
+    .ad-rectangle {
+      width: 300px; max-width: 100%; height: 250px;
+      background: rgba(255,255,255,0.02);
+      border: 1px dashed rgba(245,197,24,0.15);
+      border-radius: var(--radius-sm);
+      overflow: hidden; margin: 0 auto;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .sidebar-info {
+      background: var(--bg-card2);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius); padding: 1.5rem;
+    }
+    .sidebar-info h3 {
+      font-size: 1rem; font-weight: 800; margin-bottom: 0.75rem; color: var(--gold);
+    }
+    .sidebar-info p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.75; }
+
+    .sidebar-stats {
+      margin-top: 1rem; display: flex; flex-direction: column; gap: 0.75rem;
+    }
+    .stat-row {
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: 0.85rem;
+    }
+    .stat-label { color: var(--text-dim); }
+    .stat-val   { font-weight: 700; color: var(--text-main); }
+
+    /* ══════════════════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════════════════ */
+    footer {
+      position: relative; z-index: 1;
+      border-top: 1px solid var(--border);
+    }
+    .ad-footer-wrap {
+      padding: 1.5rem clamp(1rem,4vw,2rem);
+      display: flex; justify-content: center;
+      background: var(--bg-card);
+    }
+    .ad-footer-box {
+      width: 728px; max-width: 100%; height: 90px;
+      background: rgba(255,255,255,0.02);
+      border: 1px dashed rgba(245,197,24,0.15);
+      border-radius: var(--radius-sm); overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .footer-copy {
+      text-align: center; padding: 1.25rem;
+      font-size: 0.8rem; color: var(--text-dim);
+    }
+    .footer-copy a { color: var(--gold); text-decoration: none; }
+
+    /* ══════════════════════════════════════════════════
+       LOADING SKELETON
+    ══════════════════════════════════════════════════ */
+    .skeleton {
+      background: linear-gradient(90deg,
+        rgba(255,255,255,0.04) 25%,
+        rgba(255,255,255,0.08) 50%,
+        rgba(255,255,255,0.04) 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.4s infinite;
+      border-radius: 6px;
+    }
+    @keyframes shimmer { from{background-position:200% 0} to{background-position:-200% 0} }
+
+    /* ══════════════════════════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════════════════════════ */
+    @media(max-width:480px) {
+      .nav-vocab-btn span { display: none; }
+      .vocab-table th:nth-child(4),
+      .vocab-table td:nth-child(4) { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Scroll progress bar -->
+<div id="scrollBar"></div>
+
+<!-- ═══════════ HEADER ═══════════ -->
+<header id="mainHeader">
+  <div class="header-inner">
+    <a href="/" class="site-logo" id="headerLogo">
+      <div class="logo-icon" id="headerLogoIcon">🎬</div>
+      <div class="logo-text-wrap">
+        <div class="logo-name" id="headerSiteName">Movies <span>World</span></div>
+        <div class="logo-sub" id="headerTagline">Watch and Learn</div>
+      </div>
+    </a>
+
+    <a href="#vocab-section" class="nav-vocab-btn" id="headerVocabBtn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+      </svg>
+      <span>تعلم مفردات الفيلم</span>
+    </a>
+  </div>
+</header>
+
+<!-- ═══════════ TOP AD ═══════════ -->
+<div class="ad-top-wrap">
+  <span class="ad-label">إعلان</span>
+  <div class="ad-leaderboard" id="adLeaderboard">
+    <!-- a-ads leaderboard: replaced by JS -->
+  </div>
+  <div class="ad-mobile-banner" id="adMobileBanner">
+    <!-- a-ads mobile banner: replaced by JS -->
+  </div>
+</div>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section class="hero">
+  <div class="hero-badge" id="heroBadge">🎬 Movies World: Watch and Learn</div>
+  <h1 class="hero-title" id="heroTitle">اكتشف <em id="heroFilmName">الفيلم</em><br/>وتعلّم الإنجليزية</h1>
+  <p class="hero-sub" id="heroSub">استمتع بقصة رائعة واكسب مفردات جديدة في كل مشاهدة</p>
+  <div class="hero-stars">⭐⭐⭐⭐⭐</div>
+</section>
+
+<!-- ═══════════ MAIN CONTENT ═══════════ -->
+<div class="main-wrap">
+  <main>
+
+    <!-- ── FILM CARD ── -->
+    <div class="film-card">
+      <div class="film-layout">
+        <!-- Poster -->
+        <div class="film-poster-wrap" id="filmPosterWrap">
+        <img id="filmPoster" src="" alt="" loading="eager">
+            
+          <div class="film-poster-fallback" id="filmPosterFallback" style="display:none;">
+            <span id="fallbackEmoji">🎬</span>
+            <span id="fallbackTitle">الفيلم</span>
+          </div>
+          <div class="poster-overlay"></div>
+          <div class="film-year-badge" id="filmYearBadge">2024</div>
+          <div class="film-highlight-badge" id="filmHighlightBadge">⭐ مميز</div>
+        </div>
+
+        <!-- Body -->
+        <div class="film-body">
+          <div class="film-genres" id="filmGenres"></div>
+
+          <h2 class="film-title" id="filmTitle">
+            عنوان الفيلم
+            <small id="filmTitleEn">Film Title</small>
+          </h2>
+
+          <div class="film-imdb">
+            <span class="imdb-badge">IMDb</span>
+            <span class="imdb-score" id="filmScore">8.0</span>
+            <span class="imdb-max">/10</span>
+          </div>
+
+          <p class="film-story-title">📖 قصة الفيلم</p>
+          <p class="film-story-text" id="filmStory">...</p>
+
+          <div class="film-cta-row">
+            <a class="btn-trailer" id="trailerBtn" href="#" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              مشاهدة الفلم
+            </a>
+            <a class="btn-vocab" href="#vocab-section">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+              </svg>
+              تعلم مفردات الفيلم
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── CORE MESSAGE ── -->
+    <div class="info-block" id="coreMessageBlock">
+      <div class="info-block-header">
+        <div class="info-block-icon">💡</div>
+        <div>
+          <div class="info-block-title">الرسالة الجوهرية للفيلم</div>
+          <div class="info-block-subtitle">Core Message</div>
+        </div>
+      </div>
+      <p class="core-message-text" id="coreMessageText">...</p>
+    </div>
+
+    <!-- ── WHY WATCH ── -->
+    <div class="info-block" id="whyWatchBlock">
+      <div class="info-block-header">
+        <div class="info-block-icon">🎯</div>
+        <div>
+          <div class="info-block-title">لماذا يجب عليك مشاهدة هذا الفيلم؟</div>
+          <div class="info-block-subtitle">Why You Should Watch It</div>
+        </div>
+      </div>
+      <ul class="why-list" id="whyList"></ul>
+    </div>
+
+  </main>
+
+  <!-- ═══════════ SIDEBAR ═══════════ -->
+  <aside class="sidebar">
+    <div class="sidebar-ad-box">
+      <span class="ad-label">إعلان</span>
+      <div class="ad-rectangle" id="adSidebar"></div>
+    </div>
+
+    <div class="sidebar-info">
+      <h3>🎓 لماذا تتعلم معنا؟</h3>
+      <p>نربط بين متعة مشاهدة الأفلام وتعلم اللغة الإنجليزية بأسلوب تفاعلي وممتع يجعلك تحب التعلم.</p>
+      <div class="sidebar-stats" id="sidebarStats"></div>
+    </div>
+  </aside>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     VOCABULARY SECTION
+════════════════════════════════════════════════ -->
+<section id="vocab-section">
+  <div class="vocab-header">
+    <div class="vocab-eyebrow">📚 Language Learning</div>
+    <h2 class="vocab-title">مفردات <span id="vocabFilmName">الفيلم</span></h2>
+    <p class="vocab-desc">تعلم أهم الكلمات الإنجليزية من الفيلم واختبر نفسك باختبار تفاعلي</p>
+  </div>
+
+  <!-- Tabs -->
+  <div class="vocab-tabs">
+    <button class="vocab-tab active" onclick="switchTab('table')">📋 جدول المفردات</button>
+    <button class="vocab-tab" onclick="switchTab('quiz')">🎯 اختبر نفسك</button>
+  </div>
+
+  <!-- Table Panel -->
+  <div id="panel-table">
+    <div class="vocab-table-wrap">
+      <table class="vocab-table" id="vocabTable">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>الكلمة الإنجليزية</th>
+            <th>النطق</th>
+            <th>الترجمة</th>
+            <th>مثال</th>
+          </tr>
+        </thead>
+        <tbody id="vocabTableBody">
+          <!-- filled by JS -->
+          <tr><td colspan="5"><div class="skeleton" style="height:40px;margin:8px 0;"></div></td></tr>
+          <tr><td colspan="5"><div class="skeleton" style="height:40px;margin:8px 0;"></div></td></tr>
+          <tr><td colspan="5"><div class="skeleton" style="height:40px;margin:8px 0;"></div></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Quiz Panel -->
+  <div id="panel-quiz">
+    <div class="quiz-meta">
+      <span class="quiz-progress-label">السؤال <strong id="quizCurrent">1</strong> من <strong id="quizTotal">10</strong></span>
+      <span class="quiz-score-label">النقاط: <strong id="quizScore">0</strong></span>
+    </div>
+    <div class="quiz-progress-bar"><div class="quiz-progress-fill" id="quizProgressFill" style="width:0%"></div></div>
+
+    <div class="quiz-card" id="quizCard">
+      <div class="quiz-question-num" id="quizQuestionNum">سؤال 1</div>
+      <div class="quiz-question" id="quizQuestion">word</div>
+      <div class="quiz-question-pron" id="quizPron">/pronunciation/</div>
+      <div class="quiz-question-hint">ما معنى هذه الكلمة بالعربية؟</div>
+      <div class="quiz-options" id="quizOptions"></div>
+      <div class="quiz-feedback" id="quizFeedback"></div>
+      <button class="quiz-next-btn" id="quizNextBtn" onclick="nextQuestion()">السؤال التالي ←</button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer>
+  <div class="ad-footer-wrap">
+    <div class="ad-footer-box" id="adFooter"></div>
+  </div>
+  <p class="footer-copy" id="footerCopy">© 2025 Movies World · All Rights Reserved</p>
+</footer>
+
+<!-- ═══════════════════════════════════════════════
+     SCRIPTS
+════════════════════════════════════════════════ -->
+<script src="movie-config.js"></script>
+<script>
+/* ══════════════════════════════════════════════════
+   INIT — Apply MOVIE_CONFIG to all DOM elements
+══════════════════════════════════════════════════ */
+(function applyConfig() {
+  const cfg  = MOVIE_CONFIG;
+  const film = cfg.film;
+  const site = cfg.site;
+
+  // CSS accent vars
+  document.documentElement.style.setProperty('--accent',       film.accent_color);
+  document.documentElement.style.setProperty('--accent-dark',  film.accent_dark);
+  document.documentElement.style.setProperty('--accent-light', film.accent_light);
+  document.documentElement.style.setProperty('--accent-glow',
+    hexToRGBA(film.accent_color, 0.2));
+
+  // Page meta
+  document.getElementById('page-title').textContent =
+    `${film.title_arabic} | ${site.name}: ${site.tagline}`;
+
+  // Header
+  document.getElementById('headerLogoIcon').textContent = site.logo_emoji;
+  document.getElementById('headerSiteName').innerHTML =
+    site.name.split(' ').map((w,i)=> i===1?`<span>${w}</span>`:w).join(' ');
+  document.getElementById('headerTagline').textContent = site.tagline;
+
+  // Hero
+  document.getElementById('heroFilmName').textContent = film.title_arabic;
+  document.getElementById('heroSub').textContent =
+    `استمتع بـ "${film.title_arabic}" وتعلّم مفردات إنجليزية جديدة في رحلة ممتعة`;
+
+  // Film card — poster
+  const img = document.getElementById('filmPoster');
+  img.src = film.poster_url;
+  img.alt = film.title_arabic;
+  document.getElementById('filmPosterFallback').style.background = film.poster_fallback_bg;
+  document.getElementById('fallbackEmoji').textContent = film.poster_fallback_emoji;
+  document.getElementById('fallbackTitle').textContent = film.title_arabic;
+  document.getElementById('filmYearBadge').textContent = `${film.year} · ${film.studio}`;
+  document.getElementById('filmHighlightBadge').textContent = film.highlight_badge;
+
+  // Genres
+  const genresEl = document.getElementById('filmGenres');
+  film.genres.forEach(g => {
+    const span = document.createElement('span');
+    span.className = 'genre-tag';
+    span.textContent = g;
+    genresEl.appendChild(span);
+  });
+
+  // Titles
+  document.getElementById('filmTitle').childNodes[0].textContent = film.title_arabic + ' ';
+  document.getElementById('filmTitleEn').textContent = film.title_english;
+  document.getElementById('filmScore').textContent = film.imdb_score;
+  document.getElementById('filmStory').textContent = film.story.trim();
+  document.getElementById('trailerBtn').href = film.trailer_url;
+
+  // Core message
+  document.getElementById('coreMessageText').textContent = film.core_message.trim();
+
+  // Why watch
+  const whyList = document.getElementById('whyList');
+  film.why_watch.forEach(item => {
+    const li = document.createElement('li');
+    li.innerHTML = `<span class="why-icon">${item.icon}</span><span>${item.point}</span>`;
+    whyList.appendChild(li);
+  });
+
+  // Vocab section title
+  document.getElementById('vocabFilmName').textContent = film.title_arabic;
+
+  // Sidebar stats
+  const stats = document.getElementById('sidebarStats');
+  [
+    { label: 'مدة الفيلم',   val: film.duration },
+    { label: 'تقييم IMDb',   val: `${film.imdb_score}/10 ⭐` },
+    { label: 'الاستوديو',    val: film.studio },
+    { label: 'عدد المفردات', val: '10 كلمات' }
+  ].forEach(s => {
+    const div = document.createElement('div');
+    div.className = 'stat-row';
+    div.innerHTML = `<span class="stat-label">${s.label}</span><span class="stat-val">${s.val}</span>`;
+    stats.appendChild(div);
+  });
+
+  // Footer
+  document.getElementById('footerCopy').textContent = site.copyright;
+
+  // Ads
+  const adIds = cfg.ads;
+  injectAd('adLeaderboard', adIds.leaderboard_id, 728, 90);
+  injectAd('adMobileBanner', adIds.leaderboard_id, 320, 50);
+  injectAd('adSidebar',      adIds.sidebar_id,     300, 250);
+  injectAd('adFooter',       adIds.leaderboard_id, 728, 90);
+})();
+
+function injectAd(containerId, key, w, h) {
+  const el = document.getElementById(containerId);
+  if (!el || !key) return;
+
+  el.innerHTML = `
+    <script type="text/javascript">
+      atOptions = {
+        'key' : '${key}',
+        'format' : 'iframe',
+        'height' : ${h},
+        'width' : ${w},
+        'params' : {}
+      };
+    <\/script>
+    <script type="text/javascript" src="//www.highperformanceformat.com/${key}/invoke.js"><\/script>
+  `;
+}
+
+function hexToRGBA(hex, alpha) {
+  const r = parseInt(hex.slice(1,3),16);
+  const g = parseInt(hex.slice(3,5),16);
+  const b = parseInt(hex.slice(5,7),16);
+  return `rgba(${r},${g},${b},${alpha})`;
+}
+
+/* ══════════════════════════════════════════════════
+   VOCABULARY — Load from vocabulary.json
+══════════════════════════════════════════════════ */
+let vocabData = [];
+
+async function loadVocabulary() {
+  try {
+    const res  = await fetch('vocabulary.json');
+    const json = await res.json();
+    vocabData = json.vocabulary;
+    renderVocabTable(vocabData);
+    initQuiz(vocabData);
+  } catch (e) {
+    document.getElementById('vocabTableBody').innerHTML =
+      `<tr><td colspan="5" style="text-align:center;color:var(--text-dim);padding:2rem;">
+        تعذّر تحميل ملف المفردات — تأكد من وجود vocabulary.json
+      </td></tr>`;
+  }
+}
+
+function renderVocabTable(words) {
+  const tbody = document.getElementById('vocabTableBody');
+  tbody.innerHTML = '';
+  words.forEach((w, i) => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td style="color:var(--text-dim);font-size:0.85rem;font-weight:700">${i+1}</td>
+      <td>
+        <div class="vocab-word">${w.word}</div>
+        ${w.pronunciation ? `<div class="vocab-pron">${w.pronunciation}</div>` : ''}
+      </td>
+      <td><span style="font-size:0.85rem;color:var(--text-dim);font-style:italic">${w.pronunciation || '—'}</span></td>
+      <td><span class="vocab-trans">${w.translation}</span></td>
+      <td>
+        <div class="vocab-example">${w.example_en}</div>
+        <div class="vocab-example-ar">${w.example_ar}</div>
+      </td>`;
+    tbody.appendChild(tr);
+  });
+}
+
+/* ══════════════════════════════════════════════════
+   TABS
+══════════════════════════════════════════════════ */
+function switchTab(tab) {
+  const tabs = document.querySelectorAll('.vocab-tab');
+  tabs[0].classList.toggle('active', tab === 'table');
+  tabs[1].classList.toggle('active', tab === 'quiz');
+
+  document.getElementById('panel-table').style.display = tab === 'table' ? 'block' : 'none';
+  document.getElementById('panel-quiz').style.display  = tab === 'quiz'  ? 'block' : 'none';
+
+  if (tab === 'quiz' && quizIndex === 0) renderQuestion();
+}
+
+/* ══════════════════════════════════════════════════
+   QUIZ ENGINE
+══════════════════════════════════════════════════ */
+let quizWords   = [];
+let quizIndex   = 0;
+let quizPoints  = 0;
+let answered    = false;
+
+function initQuiz(words) {
+  quizWords  = shuffle([...words]);
+  quizIndex  = 0;
+  quizPoints = 0;
+  document.getElementById('quizTotal').textContent = quizWords.length;
+}
+
+function shuffle(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+function renderQuestion() {
+  if (quizIndex >= quizWords.length) { showResults(); return; }
+
+  const w = quizWords[quizIndex];
+  answered = false;
+
+  document.getElementById('quizCurrent').textContent  = quizIndex + 1;
+  document.getElementById('quizScore').textContent    = quizPoints;
+  document.getElementById('quizQuestionNum').textContent = `سؤال ${quizIndex + 1}`;
+  document.getElementById('quizQuestion').textContent = w.word;
+  document.getElementById('quizPron').textContent     = w.pronunciation || '';
+
+  const progress = ((quizIndex) / quizWords.length) * 100;
+  document.getElementById('quizProgressFill').style.width = progress + '%';
+
+  const feedback = document.getElementById('quizFeedback');
+  feedback.innerHTML = '';
+  feedback.className = 'quiz-feedback';
+
+  const nextBtn = document.getElementById('quizNextBtn');
+  nextBtn.classList.remove('visible');
+
+  // Shuffle options for this question
+  const opts = shuffle([...w.options]);
+  const optsCont = document.getElementById('quizOptions');
+  optsCont.innerHTML = '';
+
+  opts.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.className = 'quiz-opt';
+    btn.textContent = opt;
+    btn.onclick = () => checkAnswer(btn, opt, w.translation, opts);
+    optsCont.appendChild(btn);
+  });
+}
+
+function checkAnswer(selectedBtn, selected, correct, allOpts) {
+  if (answered) return;
+  answered = true;
+
+  const allBtns = document.querySelectorAll('.quiz-opt');
+  allBtns.forEach(b => b.disabled = true);
+
+  const feedback = document.getElementById('quizFeedback');
+  const nextBtn  = document.getElementById('quizNextBtn');
+
+  if (selected === correct) {
+    selectedBtn.classList.add('correct');
+    quizPoints++;
+    document.getElementById('quizScore').textContent = quizPoints;
+    feedback.className = 'quiz-feedback correct';
+    feedback.innerHTML = `<span class="quiz-feedback-icon">✅</span>
+      <span class="quiz-feedback-text">أحسنت! إجابة صحيحة</span>`;
+  } else {
+    selectedBtn.classList.add('wrong');
+    // Highlight the correct one
+    allBtns.forEach(b => { if (b.textContent === correct) b.classList.add('correct'); });
+    feedback.className = 'quiz-feedback wrong';
+    feedback.innerHTML = `<span class="quiz-feedback-icon">❌</span>
+      <span class="quiz-feedback-text">الإجابة الصحيحة: ${correct}</span>`;
+  }
+
+  nextBtn.textContent = quizIndex + 1 < quizWords.length ? 'السؤال التالي ←' : 'عرض النتيجة 🏆';
+  nextBtn.classList.add('visible');
+}
+
+function nextQuestion() {
+  quizIndex++;
+  if (quizIndex >= quizWords.length) { showResults(); }
+  else { renderQuestion(); }
+}
+
+function showResults() {
+  const pct = Math.round((quizPoints / quizWords.length) * 100);
+  let emoji = '🌟', msg = '';
+
+  if (pct === 100)    { emoji = '🏆'; msg = 'مثالي! حفظت جميع المفردات بشكل رائع.'; }
+  else if (pct >= 70) { emoji = '🎉'; msg = 'أداء ممتاز! أنت على الطريق الصحيح.'; }
+  else if (pct >= 50) { emoji = '💪'; msg = 'جيد جداً! استمر في التدرب ستتحسن أكثر.'; }
+  else                { emoji = '📖'; msg = 'راجع الجدول واحفظ المفردات ثم حاول مجدداً.'; }
+
+  document.getElementById('quizCard').innerHTML = `
+    <div class="quiz-results">
+      <div class="results-emoji">${emoji}</div>
+      <div class="results-score">${quizPoints}</div>
+      <div class="results-max">من ${quizWords.length} سؤال · ${pct}%</div>
+      <p class="results-msg">${msg}</p>
+      <button class="results-retry" onclick="retryQuiz()">🔄 حاول مرة أخرى</button>
+    </div>`;
+}
+
+function retryQuiz() {
+  quizWords  = shuffle([...vocabData]);
+  quizIndex  = 0;
+  quizPoints = 0;
+  document.getElementById('quizScore').textContent   = 0;
+  document.getElementById('quizCurrent').textContent = 1;
+  document.getElementById('quizProgressFill').style.width = '0%';
+
+  // Rebuild card
+  document.getElementById('quizCard').innerHTML = `
+    <div class="quiz-question-num" id="quizQuestionNum">سؤال 1</div>
+    <div class="quiz-question" id="quizQuestion">word</div>
+    <div class="quiz-question-pron" id="quizPron"></div>
+    <div class="quiz-question-hint">ما معنى هذه الكلمة بالعربية؟</div>
+    <div class="quiz-options" id="quizOptions"></div>
+    <div class="quiz-feedback" id="quizFeedback"></div>
+    <button class="quiz-next-btn" id="quizNextBtn" onclick="nextQuestion()">السؤال التالي ←</button>`;
+
+  renderQuestion();
+}
+
+/* ══════════════════════════════════════════════════
+   SCROLL EFFECTS
+══════════════════════════════════════════════════ */
+window.addEventListener('scroll', () => {
+  const bar     = document.getElementById('scrollBar');
+  const header  = document.getElementById('mainHeader');
+  const scrolled = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) || 0;
+  bar.style.transform = `scaleX(${scrolled})`;
+  header.classList.toggle('scrolled', window.scrollY > 60);
+}, { passive: true });
+
+// Init
+loadVocabulary();
+</script>
+
+</body>
+</html>

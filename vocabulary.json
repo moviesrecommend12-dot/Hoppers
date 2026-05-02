@@ -1,0 +1,637 @@
+{
+  "film": "Hoppers",
+  "film_arabic": "هوبرز",
+  "level": "A2–B1",
+  "vocabulary": [
+    {
+      "id": 1,
+      "word": "beaver",
+      "pronunciation": "/ˈbiːvər/",
+      "translation": "قندس",
+      "example_en": "The beaver built a strong dam in the river.",
+      "example_ar": "بنى القندس سداً قوياً في النهر.",
+      "options": ["قندس", "أرنب", "دب", "ثعلب"]
+    },
+    {
+      "id": 2,
+      "word": "robot",
+      "pronunciation": "/ˈroʊbɑːt/",
+      "translation": "روبوت / آلي",
+      "example_en": "Mabel transferred her mind into an animal robot.",
+      "example_ar": "نقلت مابل عقلها إلى روبوت حيواني.",
+      "options": ["إنسان", "روبوت / آلي", "شجرة", "طائر"]
+    },
+    {
+      "id": 3,
+      "word": "mind",
+      "pronunciation": "/maɪnd/",
+      "translation": "عقل",
+      "example_en": "She used her mind to control the machine.",
+      "example_ar": "استخدمت عقلها للتحكم في الآلة.",
+      "options": ["قلب", "عقل", "يد", "قدم"]
+    },
+    {
+      "id": 4,
+      "word": "transfer",
+      "pronunciation": "/trænsˈfɜːr/",
+      "translation": "نقل",
+      "example_en": "They need to transfer the data safely.",
+      "example_ar": "يحتاجون إلى نقل البيانات بأمان.",
+      "options": ["حذف", "نقل", "تلوين", "نوم"]
+    },
+    {
+      "id": 5,
+      "word": "nature",
+      "pronunciation": "/ˈneɪtʃər/",
+      "translation": "طبيعة",
+      "example_en": "We must protect nature and the animals.",
+      "example_ar": "يجب علينا حماية الطبيعة والحيوانات.",
+      "options": ["مدينة", "مصنع", "طبيعة", "شارع"]
+    },
+    {
+      "id": 6,
+      "word": "forest",
+      "pronunciation": "/ˈfɔːrɪst/",
+      "translation": "غابة",
+      "example_en": "The animals live in the dark green forest.",
+      "example_ar": "تعيش الحيوانات في الغابة الخضراء الداكنة.",
+      "options": ["صحراء", "بحر", "غابة", "قرية"]
+    },
+    {
+      "id": 7,
+      "word": "river",
+      "pronunciation": "/ˈrɪvər/",
+      "translation": "نهر",
+      "example_en": "The beaver swims in the cold river.",
+      "example_ar": "يسبح القندس في النهر البارد.",
+      "options": ["جبل", "نهر", "سماء", "نار"]
+    },
+    {
+      "id": 8,
+      "word": "dam",
+      "pronunciation": "/dæm/",
+      "translation": "سد",
+      "example_en": "The dam stops the water from flowing.",
+      "example_ar": "يمنع السد الماء من التدفق.",
+      "options": ["جسر", "خيمة", "سد", "نفق"]
+    },
+    {
+      "id": 9,
+      "word": "mayor",
+      "pronunciation": "/ˈmeɪər/",
+      "translation": "عمدة",
+      "example_en": "The greedy mayor wants to destroy the forest.",
+      "example_ar": "العمدة الجشع يريد تدمير الغابة.",
+      "options": ["عمدة", "طبيب", "معلم", "طباخ"]
+    },
+    {
+      "id": 10,
+      "word": "greedy",
+      "pronunciation": "/ˈɡriːdi/",
+      "translation": "جشع / طماع",
+      "example_en": "The greedy man wanted all the money for himself.",
+      "example_ar": "أراد الرجل الجشع كل المال لنفسه.",
+      "options": ["كريم", "لطيف", "جشع / طماع", "شجاع"]
+    },
+    {
+      "id": 11,
+      "word": "animal",
+      "pronunciation": "/ˈænɪməl/",
+      "translation": "حيوان",
+      "example_en": "The beaver is a hardworking animal.",
+      "example_ar": "القندس حيوان مجتهد.",
+      "options": ["نبات", "حيوان", "جماد", "بشر"]
+    },
+    {
+      "id": 12,
+      "word": "human",
+      "pronunciation": "/ˈhjuːmən/",
+      "translation": "إنسان",
+      "example_en": "Mabel is a human who loves the wild.",
+      "example_ar": "مابل إنسانة تحب البرية.",
+      "options": ["إنسان", "آلة", "سمكة", "نجم"]
+    },
+    {
+      "id": 13,
+      "word": "machine",
+      "pronunciation": "/məˈʃiːn/",
+      "translation": "آلة",
+      "example_en": "The new machine helps people connect with animals.",
+      "example_ar": "تساعد الآلة الجديدة الناس على التواصل مع الحيوانات.",
+      "options": ["لعبة", "كتاب", "آلة", "طعام"]
+    },
+    {
+      "id": 14,
+      "word": "discover",
+      "pronunciation": "/dɪˈskʌvər/",
+      "translation": "يكتشف",
+      "example_en": "She wants to discover the secrets of the forest.",
+      "example_ar": "تريد أن تكتشف أسرار الغابة.",
+      "options": ["يخفي", "يكتشف", "ينسى", "يرمي"]
+    },
+    {
+      "id": 15,
+      "word": "adventure",
+      "pronunciation": "/ədˈventʃər/",
+      "translation": "مغامرة",
+      "example_en": "Their journey in the woods was a great adventure.",
+      "example_ar": "كانت رحلتهم في الغابة مغامرة عظيمة.",
+      "options": ["نوم", "دراسة", "مغامرة", "مرض"]
+    },
+    {
+      "id": 16,
+      "word": "empathy",
+      "pronunciation": "/ˈempəθi/",
+      "translation": "تعاطف",
+      "example_en": "Empathy helps us understand how others feel.",
+      "example_ar": "يساعدنا التعاطف على فهم شعور الآخرين.",
+      "options": ["قسوة", "أنانية", "تعاطف", "غضب"]
+    },
+    {
+      "id": 17,
+      "word": "identity",
+      "pronunciation": "/aɪˈdentəti/",
+      "translation": "هوية",
+      "example_en": "She struggled to find her true identity.",
+      "example_ar": "كافحت للعثور على هويتها الحقيقية.",
+      "options": ["عنوان", "هوية", "عمر", "وزن"]
+    },
+    {
+      "id": 18,
+      "word": "save",
+      "pronunciation": "/seɪv/",
+      "translation": "ينقذ",
+      "example_en": "We must save the animals from danger.",
+      "example_ar": "يجب أن ننقذ الحيوانات من الخطر.",
+      "options": ["يقتل", "ينقذ", "يشتري", "يبيع"]
+    },
+    {
+      "id": 19,
+      "word": "protect",
+      "pronunciation": "/prəˈtekt/",
+      "translation": "يحمي",
+      "example_en": "The king wants to protect his kingdom.",
+      "example_ar": "الملك يريد أن يحمي مملكته.",
+      "options": ["يؤذي", "يهرب", "يحمي", "يتجاهل"]
+    },
+    {
+      "id": 20,
+      "word": "environment",
+      "pronunciation": "/ɪnˈvaɪrənmənt/",
+      "translation": "بيئة",
+      "example_en": "Pollution is bad for the environment.",
+      "example_ar": "التلوث سيء للبيئة.",
+      "options": ["مصنع", "مدرسة", "بيئة", "سيارة"]
+    },
+    {
+      "id": 21,
+      "word": "tree",
+      "pronunciation": "/triː/",
+      "translation": "شجرة",
+      "example_en": "The beaver cut down the tree with its teeth.",
+      "example_ar": "قطع القندس الشجرة بأسنانه.",
+      "options": ["حجر", "شجرة", "سحابة", "رمل"]
+    },
+    {
+      "id": 22,
+      "word": "wood",
+      "pronunciation": "/wʊd/",
+      "translation": "خشب",
+      "example_en": "They used wood to build the dam.",
+      "example_ar": "استخدموا الخشب لبناء السد.",
+      "options": ["حديد", "زجاج", "خشب", "بلاستيك"]
+    },
+    {
+      "id": 23,
+      "word": "teeth",
+      "pronunciation": "/tiːθ/",
+      "translation": "أسنان",
+      "example_en": "Beavers have very strong front teeth.",
+      "example_ar": "القنادس لديها أسنان أمامية قوية جداً.",
+      "options": ["عيون", "أسنان", "آذان", "شعر"]
+    },
+    {
+      "id": 24,
+      "word": "tail",
+      "pronunciation": "/teɪl/",
+      "translation": "ذيل",
+      "example_en": "The beaver hit the water with its flat tail.",
+      "example_ar": "ضرب القندس الماء بذيله المسطح.",
+      "options": ["أنف", "رأس", "ذيل", "جناح"]
+    },
+    {
+      "id": 25,
+      "word": "swim",
+      "pronunciation": "/swɪm/",
+      "translation": "يسبح",
+      "example_en": "He can swim very fast in the river.",
+      "example_ar": "يستطيع أن يسبح بسرعة كبيرة في النهر.",
+      "options": ["يطير", "يركض", "يسبح", "يزحف"]
+    },
+    {
+      "id": 26,
+      "word": "jump",
+      "pronunciation": "/dʒʌmp/",
+      "translation": "يقفز",
+      "example_en": "The animal had to jump over the log.",
+      "example_ar": "كان على الحيوان أن يقفز فوق جذع الشجرة.",
+      "options": ["يجلس", "يقفز", "ينام", "يأكل"]
+    },
+    {
+      "id": 27,
+      "word": "build",
+      "pronunciation": "/bɪld/",
+      "translation": "يبني",
+      "example_en": "They worked together to build a safe home.",
+      "example_ar": "عملوا معاً ليبنوا منزلاً آمناً.",
+      "options": ["يهدم", "يبني", "يقرأ", "يغني"]
+    },
+    {
+      "id": 28,
+      "word": "brain",
+      "pronunciation": "/breɪn/",
+      "translation": "دماغ",
+      "example_en": "The human brain is very complex.",
+      "example_ar": "دماغ الإنسان معقد جداً.",
+      "options": ["معدة", "قلب", "دماغ", "رئة"]
+    },
+    {
+      "id": 29,
+      "word": "science",
+      "pronunciation": "/ˈsaɪəns/",
+      "translation": "علم",
+      "example_en": "Advances in science made the transfer possible.",
+      "example_ar": "التطورات في العلم جعلت النقل ممكناً.",
+      "options": ["فن", "تاريخ", "علم", "رياضة"]
+    },
+    {
+      "id": 30,
+      "word": "friend",
+      "pronunciation": "/frend/",
+      "translation": "صديق",
+      "example_en": "Mabel made a new friend in the wild.",
+      "example_ar": "صنعت مابل صديقاً جديداً في البرية.",
+      "options": ["عدو", "صديق", "غريب", "لص"]
+    },
+    {
+      "id": 31,
+      "word": "king",
+      "pronunciation": "/kɪŋ/",
+      "translation": "ملك",
+      "example_en": "King George is the wise leader of the animals.",
+      "example_ar": "الملك جورج هو القائد الحكيم للحيوانات.",
+      "options": ["جندي", "خادم", "ملك", "فلاح"]
+    },
+    {
+      "id": 32,
+      "word": "kingdom",
+      "pronunciation": "/ˈkɪŋdəm/",
+      "translation": "مملكة",
+      "example_en": "The animal kingdom is full of wonders.",
+      "example_ar": "المملكة الحيوانية مليئة بالعجائب.",
+      "options": ["مدرسة", "مملكة", "مستشفى", "سجن"]
+    },
+    {
+      "id": 33,
+      "word": "danger",
+      "pronunciation": "/ˈdeɪndʒər/",
+      "translation": "خطر",
+      "example_en": "They must run away from the danger.",
+      "example_ar": "يجب عليهم الهروب من الخطر.",
+      "options": ["أمان", "سلام", "خطر", "هدوء"]
+    },
+    {
+      "id": 34,
+      "word": "safe",
+      "pronunciation": "/seɪf/",
+      "translation": "آمن",
+      "example_en": "The animals are safe inside the dam.",
+      "example_ar": "الحيوانات آمنة داخل السد.",
+      "options": ["مريض", "خائف", "آمن", "حزين"]
+    },
+    {
+      "id": 35,
+      "word": "wild",
+      "pronunciation": "/waɪld/",
+      "translation": "بري",
+      "example_en": "It is hard to survive in the wild.",
+      "example_ar": "من الصعب النجاة في البرية.",
+      "options": ["أليف", "منزلي", "بري", "مغلق"]
+    },
+    {
+      "id": 36,
+      "word": "wildlife",
+      "pronunciation": "/ˈwaɪldlaɪf/",
+      "translation": "الحياة البرية",
+      "example_en": "We should respect local wildlife.",
+      "example_ar": "يجب أن نحترم الحياة البرية المحلية.",
+      "options": ["المرور", "التسوق", "الحياة البرية", "المدن"]
+    },
+    {
+      "id": 37,
+      "word": "perspective",
+      "pronunciation": "/pərˈspektɪv/",
+      "translation": "منظور / وجهة نظر",
+      "example_en": "Seeing the world from a beaver's perspective is amazing.",
+      "example_ar": "رؤية العالم من منظور القندس أمر مذهل.",
+      "options": ["لون", "حجم", "منظور / وجهة نظر", "صوت"]
+    },
+    {
+      "id": 38,
+      "word": "secret",
+      "pronunciation": "/ˈsiːkrɪt/",
+      "translation": "سر",
+      "example_en": "The forest holds a dark secret.",
+      "example_ar": "تحتفظ الغابة بسر مظلم.",
+      "options": ["إعلان", "خبر", "سر", "سؤال"]
+    },
+    {
+      "id": 39,
+      "word": "mission",
+      "pronunciation": "/ˈmɪʃən/",
+      "translation": "مهمة",
+      "example_en": "Her mission was to unite the animals.",
+      "example_ar": "كانت مهمتها توحيد الحيوانات.",
+      "options": ["لعبة", "عطلة", "مهمة", "نكتة"]
+    },
+    {
+      "id": 40,
+      "word": "funny",
+      "pronunciation": "/ˈfʌni/",
+      "translation": "مضحك",
+      "example_en": "It was funny to see a human acting like a beaver.",
+      "example_ar": "كان من المضحك رؤية إنسان يتصرف كقندس.",
+      "options": ["مخيف", "حزين", "مضحك", "ممل"]
+    },
+    {
+      "id": 41,
+      "word": "laugh",
+      "pronunciation": "/læf/",
+      "translation": "يضحك",
+      "example_en": "The animals make us laugh with their jokes.",
+      "example_ar": "الحيوانات تجعلنا نضحك بنكاتها.",
+      "options": ["يبكي", "يصرخ", "يضحك", "يغضب"]
+    },
+    {
+      "id": 42,
+      "word": "learn",
+      "pronunciation": "/lɜːrn/",
+      "translation": "يتعلم",
+      "example_en": "She had to learn how to walk on four legs.",
+      "example_ar": "كان عليها أن تتعلم كيف تمشي على أربع أرجل.",
+      "options": ["ينسى", "يتعلم", "يعلم", "يتجاهل"]
+    },
+    {
+      "id": 43,
+      "word": "understand",
+      "pronunciation": "/ˌʌndərˈstænd/",
+      "translation": "يفهم",
+      "example_en": "Now I understand why they build dams.",
+      "example_ar": "الآن أفهم لماذا يبنون السدود.",
+      "options": ["يرتبك", "يفهم", "يسأل", "يرفض"]
+    },
+    {
+      "id": 44,
+      "word": "different",
+      "pronunciation": "/ˈdɪfərənt/",
+      "translation": "مختلف",
+      "example_en": "Life as an animal is very different.",
+      "example_ar": "الحياة كحيوان مختلفة جداً.",
+      "options": ["مشابه", "متطابق", "مختلف", "عادي"]
+    },
+    {
+      "id": 45,
+      "word": "body",
+      "pronunciation": "/ˈbɑːdi/",
+      "translation": "جسم / جسد",
+      "example_en": "She woke up inside a robot's body.",
+      "example_ar": "استيقظت داخل جسد روبوت.",
+      "options": ["ملابس", "جسم / جسد", "سيارة", "منزل"]
+    },
+    {
+      "id": 46,
+      "word": "soul",
+      "pronunciation": "/soʊl/",
+      "translation": "روح",
+      "example_en": "Her soul was transferred successfully.",
+      "example_ar": "تم نقل روحها بنجاح.",
+      "options": ["شعر", "روح", "عظم", "جلد"]
+    },
+    {
+      "id": 47,
+      "word": "connect",
+      "pronunciation": "/kəˈnekt/",
+      "translation": "يتواصل / يربط",
+      "example_en": "They use sounds to connect with each other.",
+      "example_ar": "يستخدمون الأصوات للتواصل مع بعضهم البعض.",
+      "options": ["يفصل", "يتواصل / يربط", "يقطع", "يهرب"]
+    },
+    {
+      "id": 48,
+      "word": "earth",
+      "pronunciation": "/ɜːrθ/",
+      "translation": "أرض / كوكب الأرض",
+      "example_en": "We share this earth with many creatures.",
+      "example_ar": "نحن نشارك هذه الأرض مع العديد من المخلوقات.",
+      "options": ["قمر", "نجم", "أرض / كوكب الأرض", "شمس"]
+    },
+    {
+      "id": 49,
+      "word": "future",
+      "pronunciation": "/ˈfjuːtʃər/",
+      "translation": "مستقبل",
+      "example_en": "The future of the forest is in danger.",
+      "example_ar": "مستقبل الغابة في خطر.",
+      "options": ["ماضي", "حاضر", "مستقبل", "أمس"]
+    },
+    {
+      "id": 50,
+      "word": "plan",
+      "pronunciation": "/plæn/",
+      "translation": "خطة",
+      "example_en": "They made a plan to stop the machines.",
+      "example_ar": "وضعوا خطة لإيقاف الآلات.",
+      "options": ["فوضى", "صدفة", "خطة", "خطأ"]
+    },
+    {
+      "id": 51,
+      "word": "stop",
+      "pronunciation": "/stɑːp/",
+      "translation": "يتوقف / يوقف",
+      "example_en": "We must stop them from taking our home.",
+      "example_ar": "يجب أن نوقفهم عن أخذ موطننا.",
+      "options": ["يستمر", "يبدأ", "يتوقف / يوقف", "يمشي"]
+    },
+    {
+      "id": 52,
+      "word": "destroy",
+      "pronunciation": "/dɪˈstrɔɪ/",
+      "translation": "يدمر",
+      "example_en": "The mayor wanted to destroy the trees.",
+      "example_ar": "أراد العمدة تدمير الأشجار.",
+      "options": ["يبني", "يصلح", "يدمر", "يزرع"]
+    },
+    {
+      "id": 53,
+      "word": "city",
+      "pronunciation": "/ˈsɪti/",
+      "translation": "مدينة",
+      "example_en": "The city is too noisy for the wild animals.",
+      "example_ar": "المدينة صاخبة جداً بالنسبة للحيوانات البرية.",
+      "options": ["قرية", "غابة", "مدينة", "مزرعة"]
+    },
+    {
+      "id": 54,
+      "word": "citizen",
+      "pronunciation": "/ˈsɪtɪzən/",
+      "translation": "مواطن",
+      "example_en": "Every citizen should protect the environment.",
+      "example_ar": "يجب على كل مواطن حماية البيئة.",
+      "options": ["سائح", "أجنبي", "مواطن", "زائر"]
+    },
+    {
+      "id": 55,
+      "word": "leader",
+      "pronunciation": "/ˈliːdər/",
+      "translation": "قائد",
+      "example_en": "The king was a strong and fair leader.",
+      "example_ar": "كان الملك قائداً قوياً وعادلاً.",
+      "options": ["تابع", "قائد", "عدو", "ضعيف"]
+    },
+    {
+      "id": 56,
+      "word": "brave",
+      "pronunciation": "/breɪv/",
+      "translation": "شجاع",
+      "example_en": "She was brave enough to stand up to the mayor.",
+      "example_ar": "كانت شجاعة بما يكفي للوقوف في وجه العمدة.",
+      "options": ["جبان", "شجاع", "خائف", "متردد"]
+    },
+    {
+      "id": 57,
+      "word": "fear",
+      "pronunciation": "/fɪr/",
+      "translation": "خوف",
+      "example_en": "They had to overcome their fear of humans.",
+      "example_ar": "كان عليهم التغلب على خوفهم من البشر.",
+      "options": ["شجاعة", "فرح", "خوف", "أمل"]
+    },
+    {
+      "id": 58,
+      "word": "together",
+      "pronunciation": "/təˈɡeðər/",
+      "translation": "معاً",
+      "example_en": "Working together, they saved the forest.",
+      "example_ar": "بالعمل معاً، أنقذوا الغابة.",
+      "options": ["وحده", "مستقلاً", "معاً", "منفصلاً"]
+    },
+    {
+      "id": 59,
+      "word": "unite",
+      "pronunciation": "/juˈnaɪt/",
+      "translation": "يتحد / يوحد",
+      "example_en": "The animals must unite to win the battle.",
+      "example_ar": "يجب أن تتحد الحيوانات للفوز في المعركة.",
+      "options": ["يتفرق", "ينقسم", "يتحد / يوحد", "يختلف"]
+    },
+    {
+      "id": 60,
+      "word": "family",
+      "pronunciation": "/ˈfæməli/",
+      "translation": "عائلة",
+      "example_en": "The forest is home to a big beaver family.",
+      "example_ar": "الغابة موطن لعائلة قنادس كبيرة.",
+      "options": ["شركة", "مدرسة", "عائلة", "فريق"]
+    },
+    {
+      "id": 61,
+      "word": "journey",
+      "pronunciation": "/ˈdʒɜːrni/",
+      "translation": "رحلة",
+      "example_en": "Mabel's journey changed her life forever.",
+      "example_ar": "رحلة مابل غيرت حياتها للأبد.",
+      "options": ["بقاء", "استراحة", "رحلة", "نهاية"]
+    },
+    {
+      "id": 62,
+      "word": "change",
+      "pronunciation": "/tʃeɪndʒ/",
+      "translation": "تغيير / يغير",
+      "example_en": "One person can change the future.",
+      "example_ar": "شخص واحد يمكنه تغيير المستقبل.",
+      "options": ["ثبات", "بقاء", "تغيير / يغير", "توقف"]
+    },
+    {
+      "id": 63,
+      "word": "world",
+      "pronunciation": "/wɜːrld/",
+      "translation": "عالم",
+      "example_en": "She saw the world through new eyes.",
+      "example_ar": "رأت العالم بعيون جديدة.",
+      "options": ["غرفة", "شارع", "عالم", "حديقة"]
+    },
+    {
+      "id": 64,
+      "word": "power",
+      "pronunciation": "/ˈpaʊər/",
+      "translation": "قوة",
+      "example_en": "The mayor used his power for bad things.",
+      "example_ar": "استخدم العمدة قوته في أشياء سيئة.",
+      "options": ["ضعف", "قوة", "مرض", "فشل"]
+    },
+    {
+      "id": 65,
+      "word": "control",
+      "pronunciation": "/kənˈtroʊl/",
+      "translation": "سيطرة / يتحكم",
+      "example_en": "He wanted to control all the land.",
+      "example_ar": "أراد السيطرة على كل الأرض.",
+      "options": ["حرية", "فوضى", "سيطرة / يتحكم", "ترك"]
+    },
+    {
+      "id": 66,
+      "word": "hope",
+      "pronunciation": "/hoʊp/",
+      "translation": "أمل",
+      "example_en": "As long as we fight, there is hope.",
+      "example_ar": "طالما أننا نقاتل، هناك أمل.",
+      "options": ["يأس", "حزن", "أمل", "استسلام"]
+    },
+    {
+      "id": 67,
+      "word": "harmony",
+      "pronunciation": "/ˈhɑːrməni/",
+      "translation": "انسجام / توافق",
+      "example_en": "Animals and humans can live in harmony.",
+      "example_ar": "يمكن للحيوانات والبشر العيش في انسجام.",
+      "options": ["صراع", "حرب", "انسجام / توافق", "خلاف"]
+    },
+    {
+      "id": 68,
+      "word": "balance",
+      "pronunciation": "/ˈbæləns/",
+      "translation": "توازن",
+      "example_en": "Nature needs balance to survive.",
+      "example_ar": "تحتاج الطبيعة إلى التوازن لتبقى.",
+      "options": ["سقوط", "توازن", "ميل", "فقدان"]
+    },
+    {
+      "id": 69,
+      "word": "survive",
+      "pronunciation": "/sərˈvaɪv/",
+      "translation": "ينجو / يبقى على قيد الحياة",
+      "example_en": "They must work hard to survive the winter.",
+      "example_ar": "يجب عليهم العمل بجد للنجاة في الشتاء.",
+      "options": ["يموت", "يستسلم", "ينجو / يبقى على قيد الحياة", "يغرق"]
+    },
+    {
+      "id": 70,
+      "word": "technology",
+      "pronunciation": "/tekˈnɑːlədʒi/",
+      "translation": "تكنولوجيا / تقنية",
+      "example_en": "Modern technology made the robot possible.",
+      "example_ar": "التكنولوجيا الحديثة جعلت الروبوت ممكناً.",
+      "options": ["طبيعة", "سحر", "تكنولوجيا / تقنية", "أسطورة"]
+    }
+  ]
+}
