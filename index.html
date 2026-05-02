@@ -1043,10 +1043,15 @@
 
 function injectAd(containerId, key, w, h) {
   const el = document.getElementById(containerId);
-  if (!el || !key) return;
+  if (!el || !key || key === "YOUR_ADSTERRA_KEY") return;
 
-  el.innerHTML = `
-    <script type="text/javascript">
+  // 1. تنظيف الحاوية أولاً
+  el.innerHTML = '';
+
+  // 2. إنشاء سكريبت الإعدادات (atOptions)
+  const configScript = document.createElement('script');
+  configScript.type = 'text/javascript';
+  configScript.text = `
       atOptions = {
         'key' : '${key}',
         'format' : 'iframe',
@@ -1054,9 +1059,16 @@ function injectAd(containerId, key, w, h) {
         'width' : ${w},
         'params' : {}
       };
-    <\/script>
-    <script type="text/javascript" src="//www.highperformanceformat.com/${key}/invoke.js"><\/script>
   `;
+
+  // 3. إنشاء سكريبت الاستدعاء (invoke.js)
+  const invokeScript = document.createElement('script');
+  invokeScript.type = 'text/javascript';
+  invokeScript.src = `//www.highperformanceformat.com/${key}/invoke.js`;
+
+  // 4. إضافة السكريبتات للحاوية
+  el.appendChild(configScript);
+  el.appendChild(invokeScript);
 }
 
 function hexToRGBA(hex, alpha) {
