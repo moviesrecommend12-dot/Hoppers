@@ -27,7 +27,7 @@ const MOVIE_CONFIG = {
     poster_fallback_emoji: "🦫",
     poster_fallback_bg: "linear-gradient(135deg,#00E676,#FFEA00)",
     trailer_url: "https://www.youtube.com/watch?v=eZ30wm7fEFk",
-    download_url: "https://example.com/download-link",
+    download_url: "https://movieapp.moviesrecommend12.workers.dev/",
     genres: ["رسوم متحركة", "خيال علمي", "كوميدي", "مغامرة"],
     highlight_badge: "✨ أحدث إصدارات بيكسار",
 
@@ -63,9 +63,9 @@ const MOVIE_CONFIG = {
 
   // ─── إعدادات الإعلانات (adsterra) ────────────────────────────────
   ads: {
-  leaderboard_id: "YOUR_ADSTERRA_KEY_1",
-  sidebar_id:     "YOUR_ADSTERRA_KEY_2",
-  infeed_id:      "YOUR_ADSTERRA_KEY_3"
+  leaderboard_id: "4452c9c1a27b1fd4cb8381c1b89e7b0d",//728*90
+  sidebar_id:     "674ebcfc03b472a3ed8abe3a59d6b82b",//300*250
+  infeed_id:      "4452c9c1a27b1fd4cb8381c1b89e7b0d"
 }
 };
 
